@@ -1,0 +1,9 @@
+[CORT-FILE]
+version: 1.0
+signature: CORTSECURE
+encoding: base64
+type: note
+title: Suspect Log 08
+voice_tts: en_us_ghostface
+script: |
+U3VzcGVjdCB3YXMgc2VlbiBhcm91bmQgdGhlIGNvcm5lciBvZiBNYWluIGFuZCBSaWRnZSBSb2FkIGF0IDMwMDo1MCBocnMu

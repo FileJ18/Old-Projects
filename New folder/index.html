@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CORTLang Decoder</title>
+  <style>
+    body {
+      background: #111;
+      color: #0f0;
+      font-family: monospace;
+      padding: 2em;
+    }
+    pre {
+      background: #222;
+      padding: 1em;
+      white-space: pre-wrap;
+      border: 1px solid #0f0;
+      max-width: 800px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CORTLang Base64 File Decoder</h1>
+
+  <input type="file" id="fileInput" accept=".cort" />
+  <button onclick="decodeCort()">Run CORTLang</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    async function runCortLang(script) {
+      const output = document.getElementById('output');
+      output.textContent = ''; // clear previous output
+
+      const lines = script.split(/\r?\n/).map(line => line.trim()).filter(line => line);
+
+      for (const line of lines) {
+        if (line.startsWith('say ')) {
+          const msg = line.match(/"(.*)"/)?.[1];
+          if (msg) output.textContent += `🗨️ ${msg}\n`;
+        }
+        else if (line.startsWith('note ')) {
+          const msg = line.match(/"(.*)"/)?.[1];
+          if (msg) output.textContent += `📒 ${msg}\n`;
+        }
+        else if (line === 'end') {
+          output.textContent += '--- End of Log ---\n';
+          break;
+        }
+      }
+    }
+
+    function decodeCort() {
+      const fileInput = document.getElementById('fileInput');
+      if (!fileInput.files.length) {
+        alert('Select a .cort file first!');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const base64 = e.target.result.trim();
+          const rawBase64 = base64.includes(',') ? base64.split(',')[1] : base64;
+          const decodedText = atob(rawBase64);
+          runCortLang(decodedText);
+        } catch (err) {
+          alert('Failed to decode Base64. Is this a valid .cort file?');
+        }
+      };
+      reader.readAsText(fileInput.files[0]);
+    }
+  </script>
+
+</body>
+</html>

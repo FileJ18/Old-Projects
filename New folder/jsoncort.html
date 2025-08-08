@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JSON to CortLang Converter</title>
+  <style>
+    body {
+      background: #111;
+      color: #0f0;
+      font-family: monospace;
+      padding: 2em;
+    }
+    textarea, pre {
+      width: 100%;
+      box-sizing: border-box;
+      background: #222;
+      border: 1px solid #0f0;
+      color: #0f0;
+      font-family: monospace;
+      padding: 1em;
+      margin: 0.5em 0;
+      resize: vertical;
+      min-height: 150px;
+    }
+    button {
+      background: #111;
+      border: 1px solid #0f0;
+      color: #0f0;
+      padding: 0.5em 1em;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #222;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>JSON to CortLang Converter</h1>
+
+  <label for="jsonInput">Paste JSON here:</label><br>
+  <textarea id="jsonInput" placeholder='{"log":[{"say":"Hello"},{"note":"Something"},{"end":true}]}'></textarea>
+  
+  <button onclick="convertJsonToCort()">Convert to CortLang</button>
+
+  <h2>Generated CortLang Script:</h2>
+  <pre id="cortOutput"></pre>
+
+  <h2>Base64 Encoded .cort File Content:</h2>
+  <pre id="base64Output"></pre>
+
+  <script>
+    function convertJsonToCort() {
+      const jsonText = document.getElementById('jsonInput').value;
+      let jsonObj;
+      try {
+        jsonObj = JSON.parse(jsonText);
+      } catch(e) {
+        alert('Invalid JSON!');
+        return;
+      }
+
+      if (!jsonObj.log || !Array.isArray(jsonObj.log)) {
+        alert('JSON must have a "log" array.');
+        return;
+      }
+
+      let cortScript = '';
+
+      for (const entry of jsonObj.log) {
+        if (entry.say) {
+          cortScript += `say "${entry.say}"\n`;
+        } else if (entry.note) {
+          cortScript += `note "${entry.note}"\n`;
+        } else if (entry.voice) {
+          cortScript += `voice "${entry.voice}"\n`;
+        } else if (entry.end) {
+          cortScript += `end\n`;
+        }
+      }
+
+      document.getElementById('cortOutput').textContent = cortScript;
+
+      // Base64 encode the CortLang script (UTF-8 safe)
+      const utf8encoder = new TextEncoder();
+      const utf8bytes = utf8encoder.encode(cortScript);
+      const base64String = btoa(String.fromCharCode(...utf8bytes));
+
+      document.getElementById('base64Output').textContent = base64String;
+    }
+  </script>
+
+</body>
+</html>
