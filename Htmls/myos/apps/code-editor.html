@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Code Editor</title>
+  <style>
+    body {
+      font-family: monospace;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    #toolbar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    select {
+      font-size: 16px;
+      padding: 5px;
+      margin-right: 10px;
+    }
+    button {
+      padding: 6px 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #editor {
+      flex-grow: 1;
+      width: 100%;
+      font-family: monospace;
+      font-size: 14px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: white;
+      resize: none;
+      overflow: auto;
+      white-space: pre;
+      tab-size: 4;
+    }
+    /* Simple syntax highlight for JS keywords as example */
+    .keyword {
+      color: blue;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="toolbar">
+    <select id="language">
+      <option value="cpp">C++</option>
+      <option value="csharp">C#</option>
+      <option value="js">JavaScript</option>
+      <option value="json">JSON</option>
+      <option value="html">HTML</option>
+      <option value="lua">Lua</option>
+      <option value="python">Python</option>
+      <option value="java">Java</option>
+    </select>
+    <button id="saveBtn">Save</button>
+    <button id="loadBtn">Load</button>
+  </div>
+  <textarea id="editor" spellcheck="false">// Write your code here...</textarea>
+
+  <script>
+    const editor = document.getElementById('editor');
+    const languageSelect = document.getElementById('language');
+
+    const storageKeyPrefix = 'jayos_code_';
+
+    // Save code to localStorage by language
+    document.getElementById('saveBtn').onclick = () => {
+      const lang = languageSelect.value;
+      localStorage.setItem(storageKeyPrefix + lang, editor.value);
+      alert('Code saved for ' + lang);
+    };
+
+    // Load code from localStorage by language
+    document.getElementById('loadBtn').onclick = () => {
+      const lang = languageSelect.value;
+      const saved = localStorage.getItem(storageKeyPrefix + lang);
+      if (saved !== null) {
+        editor.value = saved;
+      } else {
+        editor.value = '// No saved code for ' + lang;
+      }
+    };
+
+    // Load saved code automatically when switching language
+    languageSelect.onchange = () => {
+      const lang = languageSelect.value;
+      const saved = localStorage.getItem(storageKeyPrefix + lang);
+      editor.value = saved !== null ? saved : '// Write your ' + lang + ' code here...';
+    };
+
+    // Initialize with default language
+    languageSelect.dispatchEvent(new Event('change'));
+  </script>
+</body>
+</html>

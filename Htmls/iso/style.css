@@ -1,0 +1,31 @@
+body {
+  background-color: black;
+  color: limegreen;
+  font-family: monospace;
+  margin: 0;
+  padding: 0;
+}
+
+#terminal {
+  padding: 10px;
+}
+
+#output {
+  white-space: pre-wrap;
+  margin-bottom: 5px;
+}
+
+#input-line {
+  display: flex;
+  align-items: center;
+}
+
+#commandInput {
+  background: black;
+  border: none;
+  color: limegreen;
+  font-family: monospace;
+  font-size: 16px;
+  outline: none;
+  flex-grow: 1;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #c0c0c0;
+      padding: 20px;
+      text-align: center;
+    }
+    input {
+      font-size: 24px;
+      width: 200px;
+      text-align: right;
+      margin-bottom: 10px;
+    }
+    button {
+      font-size: 18px;
+      width: 50px;
+      margin: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Calculator</h2>
+  <input id="display" readonly>
+  <br>
+  <button onclick="press('1')">1</button>
+  <button onclick="press('2')">2</button>
+  <button onclick="press('+')">+</button>
+  <button onclick="calculate()">=</button>
+  <script>
+    let expression = '';
+    function press(val) {
+      expression += val;
+      document.getElementById('display').value = expression;
+    }
+    function calculate() {
+      try {
+        document.getElementById('display').value = eval(expression);
+      } catch {
+        document.getElementById('display').value = 'Error';
+      }
+      expression = '';
+    }
+  </script>
+</body>
+</html>
+

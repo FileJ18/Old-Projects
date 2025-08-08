@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Drive Viewer</title>
+  <style>
+    body { font-family: sans-serif; padding: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Drives</h1>
+  <button onclick="getDrives()">Load Drives</button>
+  <ul id="drive-list"></ul>
+
+  <script>
+    function getDrives() {
+      window.pywebview.api.get_drives().then(function(drives) {
+        const list = document.getElementById('drive-list');
+        list.innerHTML = '';
+        drives.forEach(d => {
+          const li = document.createElement('li');
+          li.textContent = d;
+          list.appendChild(li);
+        });
+      });
+    }
+  </script>
+</body>
+</html>

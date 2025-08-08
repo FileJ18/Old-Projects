@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>LuaOS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="desktop">
+    <div class="window" id="lua-app">
+      <h2>Lua App</h2>
+      <textarea id="lua-code">// Write Lua here</textarea>
+      <button onclick="runLua()">Run</button>
+      <pre id="output"></pre>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/fengari-web/dist/fengari-web.js"></script>
+  <script src="kernel.js"></script>
+</body>
+</html>

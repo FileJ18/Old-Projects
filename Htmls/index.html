@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jay's Chromium Browser</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="topbar">
+    <div id="tabs">
+      <button class="tab active" onclick="switchTab(0)">New Tab</button>
+    </div>
+    <input type="text" id="urlInput" placeholder="Type a URL or search...">
+    <button onclick="navigate()">Go</button>
+  </div>
+
+  <div id="webviewContainer">
+    <iframe class="webview" src="https://duckduckgo.com"></iframe>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

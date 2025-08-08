@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>50-Question Impossible Rage Quiz</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: #eee;
+    padding: 2rem;
+    text-align: center;
+  }
+  button {
+    margin: 0.5rem;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    background-color: #c0392b;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #e74c3c;
+  }
+  #result {
+    margin-top: 1.5rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+    min-height: 2em;
+  }
+</style>
+</head>
+<body>
+
+<h1>Impossible Rage Quiz — 50 Questions</h1>
+
+<div id="question"></div>
+<div id="answers"></div>
+<div id="result"></div>
+
+<script>
+  const questions = [
+    { q: "What has keys but can't open locks?", options: ["Piano", "Map", "Locksmith", "Door"] },
+    { q: "I speak without a mouth and hear without ears. What am I?", options: ["Echo", "Shadow", "Wind", "Light"] },
+    { q: "What number comes next: 2, 3, 5, 7, 11, ?", options: ["13", "15", "17", "12"] },
+    { q: "Which word is spelled incorrectly in every dictionary?", options: ["Incorrectly", "Dictionary", "Every", "Spelled"] },
+    { q: "If you have me, you want to share me. If you share me, you don't have me. What am I?", options: ["Secret", "Love", "Money", "Time"] },
+    { q: "I am not alive but I grow; I don’t have lungs but I need air. What am I?", options: ["Fire", "Plant", "Rock", "Shadow"] },
+    { q: "What is always in front of you but can’t be seen?", options: ["Future", "Air", "Shadow", "Thought"] },
+    { q: "How many months have 28 days?", options: ["12", "1", "6", "0"] },
+    { q: "What can travel around the world while staying in the same spot?", options: ["Stamp", "Plane", "Sun", "Moon"] },
+    { q: "If you drop me I’m sure to crack, but give me a smile and I’ll always smile back.", options: ["Mirror", "Egg", "Glass", "Phone"] },
+    { q: "What gets wetter the more it dries?", options: ["Towel", "Sponge", "Water", "Rain"] },
+    { q: "The more you take, the more you leave behind. What are they?", options: ["Footsteps", "Time", "Memories", "Words"] },
+    { q: "What has a heart that doesn’t beat?", options: ["Artichoke", "Stone", "Clock", "Tree"] },
+    { q: "Which month has 28 days?", options: ["All months", "February", "January", "March"] },
+    { q: "If an electric train is moving north at 55 mph and the wind is blowing east at 70 mph, which way does the smoke blow?", options: ["No smoke", "North", "East", "West"] },
+    { q: "A farmer has 17 sheep and all but 9 die. How many are left?", options: ["9", "8", "17", "0"] },
+    { q: "What has one eye but cannot see?", options: ["Needle", "Storm", "Cyclops", "Button"] },
+    { q: "What runs but never walks?", options: ["River", "Dog", "Clock", "Car"] },
+    { q: "What has to be broken before you can use it?", options: ["Egg", "Glass", "Seal", "Promise"] },
+    { q: "What comes once in a minute, twice in a moment, but never in a thousand years?", options: ["Letter M", "Time", "Second", "Nothing"] },
+    { q: "What word starts with E and ends with E but only has one letter?", options: ["Envelope", "Eye", "Eve", "Elope"] },
+    { q: "I have cities but no houses, forests but no trees, and rivers but no water. What am I?", options: ["Map", "Globe", "Dream", "Painting"] },
+    { q: "What can you catch but not throw?", options: ["Cold", "Ball", "Frisbee", "Shadow"] },
+    { q: "What has hands but can’t clap?", options: ["Clock", "Mannequin", "Robot", "Doll"] },
+    { q: "If two’s company and three’s a crowd, what are four and five?", options: ["Nine", "Seven", "Crowd", "Numbers"] },
+    { q: "What has an eye but cannot see and is faster than a speeding bullet?", options: ["Needle", "Wind", "Storm", "Bullet Train"] },
+    { q: "What invention lets you look right through a wall?", options: ["Window", "Door", "Mirror", "Hole"] },
+    { q: "What can fill a room but takes up no space?", options: ["Light", "Air", "Sound", "Smoke"] },
+    { q: "What has many teeth but can’t bite?", options: ["Comb", "Shark", "Saw", "Zipper"] },
+    { q: "The more of me you take, the more you leave behind. What am I?", options: ["Footsteps", "Time", "Breath", "Shadows"] },
+    { q: "What comes down but never goes up?", options: ["Rain", "Snow", "Age", "Temperature"] },
+    { q: "What has to be broken before you can use it?", options: ["Egg", "Glass", "Seal", "Silence"] },
+    { q: "What has a neck but no head?", options: ["Bottle", "Shirt", "River", "Tree"] },
+    { q: "What has a thumb and four fingers but isn’t alive?", options: ["Glove", "Hand", "Robot", "Statue"] },
+    { q: "What kind of room has no doors or windows?", options: ["Mushroom", "Bathroom", "Living room", "Classroom"] },
+    { q: "What has a head and a tail but no body?", options: ["Coin", "Snake", "Lizard", "Comet"] },
+    { q: "If you throw me out the window, I’ll leave a grieving wife. But stick me in a door, and I can save somebody’s life. What am I?", options: ["N", "W", "R", "S"] },
+    { q: "What is full of holes but still holds water?", options: ["Sponge", "Bucket", "Net", "Cup"] },
+    { q: "What can you break, even if you never pick it up or touch it?", options: ["Promise", "Glass", "Silence", "Heart"] },
+    { q: "What goes up but never comes down?", options: ["Age", "Balloon", "Sun", "Smoke"] },
+    { q: "What has words but never speaks?", options: ["Book", "Radio", "TV", "Letter"] },
+    { q: "What can run but never walks, has a mouth but never talks?", options: ["River", "Dog", "Clock", "Wind"] },
+    { q: "What is so fragile that saying its name breaks it?", options: ["Silence", "Glass", "Bubble", "Secret"] },
+    { q: "What has a bottom at the top?", options: ["Legs", "Mountain", "Lake", "Chair"] },
+    { q: "Where does today come before yesterday?", options: ["Dictionary", "Calendar", "Internet", "Time"] },
+    { q: "What is always coming but never arrives?", options: ["Tomorrow", "Yesterday", "Future", "Train"] },
+    { q: "What can’t talk but will reply when spoken to?", options: ["Echo", "Phone", "Mirror", "Radio"] },
+    { q: "What has four wheels and flies?", options: ["Garbage truck", "Airplane", "Car", "Bicycle"] },
+    { q: "What can fill a room but takes up no space?", options: ["Light", "Air", "Sound", "Heat"] },
+    { q: "What has an end but no beginning?", options: ["Circle", "Line", "Road", "Tunnel"] },
+    { q: "I’m tall when I’m young, and I’m short when I’m old. What am I?", options: ["Candle", "Tree", "Mountain", "Shadow"] },
+    { q: "If you drop me I’m sure to crack. What am I?", options: ["Egg", "Mirror", "Glass", "Stone"] },
+    { q: "The more you take, the more you leave behind. What am I?", options: ["Footsteps", "Time", "Memories", "Words"] }
+  ];
+
+  let currentQuestion = 0;
+
+  function setResult(text) {
+    document.getElementById('result').textContent = text;
+  }
+
+  function nextQuestion() {
+    currentQuestion++;
+    if (currentQuestion >= questions.length) {
+      setResult("You've reached the end! Well done or maybe not.");
+      document.getElementById('question').textContent = "";
+      document.getElementById('answers').innerHTML = "";
+      return;
+    }
+    loadQuestion();
+  }
+
+  // Customize your answer logic here (0-based indices)
+  function onAnswer(questionIndex, answerIndex) {
+    // For example, correct answers — just some random picks here:
+    const correctAnswers = [
+      0,1,0,0,0,0,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0
+    ];
+    if (correctAnswers[questionIndex] === answerIndex) {
+      setResult("Correct! Moving on...");
+      nextQuestion();
+      return true;
+    }
+    setResult("Wrong! Try again...");
+    return false;
+  }
+
+  function loadQuestion() {
+    const q = questions[currentQuestion];
+    document.getElementById('question').textContent = q.q;
+
+    const answersDiv = document.getElementById('answers');
+    answersDiv.innerHTML = '';
+    setResult('');
+
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.textContent = opt;
+      btn.onclick = () => {
+        try {
+          const correct = onAnswer(currentQuestion, i);
+          if(!correct) {
+            // Add penalty or fun behavior here if desired
+          }
+        } catch (e) {
+          alert("Script error: " + e.message);
+        }
+      };
+      answersDiv.appendChild(btn);
+    });
+  }
+
+  loadQuestion();
+</script>
+
+</body>
+</html>

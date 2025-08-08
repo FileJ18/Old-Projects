@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simple Web Text Editor</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <h1>Simple Text Editor</h1>
+  <button id="openBtn">Open</button>
+</header>
+
+<textarea id="editor" spellcheck="false" placeholder="Start typing..."></textarea>
+
+<!-- Controls moved here -->
+<footer>
+  <label for="fileTypeSelect">Save as:</label>
+  <select id="fileTypeSelect" title="Choose file type">
+    <option value="txt">.txt</option>
+    <option value="md">.md</option>
+    <option value="markdown">.markdown</option>
+    <option value="log">.log</option>
+  </select>
+
+  <button id="saveBtn">Save</button>
+</footer>
+
+<input type="file" id="fileInput" style="display:none" accept=".txt,.md,.markdown,.log" />
+
+<script src="script.js"></script>
+</body>
+</html>

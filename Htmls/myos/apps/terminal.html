@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Terminal</title>
+  <style>
+    body {
+      background: black;
+      color: lime;
+      font-family: monospace;
+      margin: 0; padding: 10px;
+    }
+    #output {
+      height: 300px;
+      overflow-y: auto;
+      border: 1px solid lime;
+      padding: 5px;
+      margin-bottom: 5px;
+      white-space: pre-wrap;
+    }
+    #input {
+      width: 100%;
+      font-family: monospace;
+      font-size: 16px;
+      background: black;
+      color: lime;
+      border: 1px solid lime;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="output">$ WebOS Terminal</div>
+  <input id="input" autofocus onkeydown="checkCommand(event)" placeholder="Type a command..." />
+  <script>
+    const output = document.getElementById('output');
+    const input = document.getElementById('input');
+
+    function checkCommand(e) {
+      if (e.key === 'Enter') {
+        const cmd = input.value.trim();
+        output.innerHTML += '\\n$ ' + cmd;
+        if (cmd.toLowerCase() === 'hello') {
+          output.innerHTML += '\\nHello user!';
+        } else {
+          output.innerHTML += '\\nCommand not found.';
+        }
+        input.value = '';
+        output.scrollTop = output.scrollHeight;
+      }
+    }
+  </script>
+</body>
+</html>

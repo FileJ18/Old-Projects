@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Offline Private Chat</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    #theme-toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <button id="theme-toggle">Toggle Dark/Light</button>
+
+  <div id="chat-container">
+    <div id="chat-window"></div>
+
+    <input id="message-input" placeholder="Type a message..." />
+    <button id="send-btn">Send</button>
+    <button id="camera-btn">📷 Camera</button>
+     <button id="record-btn">🎤 Record Voice</button>
+<button id="stop-btn" style="display:none;">🛑 Stop</button>
+    <video id="camera-preview" autoplay style="display:none;"></video>
+    <button id="capture-btn" style="display:none;">Capture</button>
+ <button id="download-btn">⬇️ Download Chat</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>2000s Web OS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="desktop">
+    <div class="icon" onclick="openApp('calculator')">🧮 Calculator</div>
+    <div class="icon" onclick="openApp('terminal')">💻 Terminal</div>
+    <div class="icon" onclick="openApp('trash')">🗑️ Trash</div>
+    <div class="icon" onclick="openApp('code-editor')">📝 Code Editor</div>
+  </div>
+
+  <div id="taskbar">
+    <div id="start-btn">Start</div>
+    <div id="taskbar-apps"></div>
+  </div>
+
+  <div id="app-window" class="window" style="display:none;">
+    <div class="title-bar" onmousedown="startDrag(event)">App Window</div>
+    <iframe id="app-frame" src=""></iframe>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

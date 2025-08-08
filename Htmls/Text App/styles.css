@@ -1,0 +1,147 @@
+body {
+  font-family: monospace, monospace;
+  margin: 0; padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  background: #222;
+  color: white;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+}
+
+header h1 {
+  flex-grow: 1;
+  font-weight: normal;
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+textarea {
+  flex-grow: 1;
+  width: 100%;
+  border: none;
+  padding: 15px;
+  font-family: monospace;
+  font-size: 1rem;
+  resize: none;
+  outline: none;
+}
+
+/* New footer styles */
+footer {
+  background: #222;
+  color: white;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+footer label {
+  margin-right: 8px;
+}
+
+select {
+  margin-right: 10px;
+  padding: 4px 6px;
+  font-size: 1rem;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  background: #444;
+  color: white;
+}
+select:hover {
+  background: #666;
+}
+
+button {
+  background: #444;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 1rem;
+}
+button:hover {
+  background: #666;
+}
+/* Base dark theme */
+body {
+  font-family: monospace, monospace;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #1e1e1e;
+  color: #eee;
+}
+
+header, footer {
+  background: #111;
+  color: #eee;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+}
+
+header h1 {
+  flex-grow: 1;
+  font-weight: normal;
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+textarea {
+  flex-grow: 1;
+  width: 100%;
+  border: none;
+  padding: 15px;
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  font-family: monospace;
+  font-size: 1rem;
+  resize: none;
+  outline: none;
+  caret-color: white;
+}
+
+/* Save controls at bottom */
+footer label {
+  margin-right: 8px;
+  font-size: 0.95rem;
+}
+
+select {
+  margin-right: 10px;
+  padding: 4px 6px;
+  font-size: 1rem;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  background: #333;
+  color: #eee;
+}
+select:hover {
+  background: #444;
+}
+
+button {
+  background: #333;
+  border: none;
+  color: #eee;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 1rem;
+}
+button:hover {
+  background: #444;
+}
